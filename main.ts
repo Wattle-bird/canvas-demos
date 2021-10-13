@@ -1,78 +1,7 @@
-import 'nothing.ts'
+import {db16, forEach2d, makeSprite, srand} from './utils'
 const WIDTH = 128
 const HEIGHT = 128
-const SCALE = 2
 let t = 0
-
-/*
- * Utilities
- */
-
-function makeSprite(pixels: string, width: number, height: number, palette = db16) {
-  const canvas = document.createElement('canvas');
-  canvas.width = width;
-  canvas.height = height;
-  const ctx = canvas.getContext('2d');
-
-  let x = 0;
-  let y = -1; // because we start with a new line before data
-
-
-  for (let char of pixels.split("")) {
-    if (char == "\n") {
-      y++;
-      x = 0;
-      continue;
-    }
-
-    let color = "transparent";
-    if (char !== " ") {
-      const index = +("0x" + char)
-      color = palette[index]
-    }
-
-    ctx.fillStyle = color;
-    ctx.fillRect(x, y, 1, 1);
-    x++
-  }
-
-  return canvas
-}
-
-// DawnBringer 16 color palette
-const db16 = [
-  '#140c1c', // 0 black
-  '#442434', // 1 dark purple
-  '#30346d', // 2 dark blue
-  '#4e4a4e', // 3 dark grey
-  '#854c30', // 4 brown
-  '#346524', // 5 dark green
-  '#d04648', // 6 red
-  '#757161', // 7 mid grey
-  '#597dce', // 8 mid blue
-  '#d27d2c', // 9 orange
-  '#8595a1', // A/10 light grey
-  '#6daa2c', // B/11 light green
-  '#d2aa99', // C/12 tan
-  '#6dc2ca', // D/13 cyan
-  '#dad45e', // E/14 yellow
-  '#deeed6', // F/15 white
-]
-
-function forEach2d(width, height, func) {
-  for (let x = 0; x < width; x++) {
-    for (let y = 0; y < height; y++) {
-      func(x, y)
-    }
-  }
-}
-
-function srand(a) {
-  // https://github.com/bryc/code/blob/master/jshash/PRNGs.md#lcg-lehmer-rng
-  return function() {
-    return (a = a * 48271 % 2147483647)/2**31;
-  }
-}
 
 /*
  * Assets
@@ -136,12 +65,12 @@ document.body.style.margin = "0"
 const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false
 
-ctx.pixel = (x, y, color) => {
+ctx.pixel = (x: number, y: number, color: string | CanvasGradient | CanvasPattern) => {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, 1, 1)
 }
 
-ctx.clearRandom = (chance) => {
+ctx.clearRandom = (chance: number) => {
   for (let x = 0; x < WIDTH; x++) {
     for (let y = 0; y < HEIGHT; y++) {
       if (Math.random() < chance) {
@@ -157,7 +86,7 @@ ctx.clearRandom = (chance) => {
  */
 
 loadImages().then(() => {
-  drawTiles()
+  shaking()
   click()
 })
 
@@ -167,7 +96,7 @@ const seed = Math.random()*2**31
 function drawTiles() {
   let rand = srand(seed)
   let counter = 0
-  forEach2d(WIDTH/8, HEIGHT/8, (x,y) => {
+  forEach2d(WIDTH/8, HEIGHT/8, (x: number,y: number) => {
     counter += rand()
     if (counter % 4 < 2)
       ctx.drawImage(tileWater,x*8, y*8)
@@ -207,10 +136,10 @@ function frend() {
 function shaking() {
   ctx.fillStyle = 'black'
   ctx.fillRect(0, 0, 320, 320);
-  const x = 10 + Math.random() * 5;
-  const y = 200 + Math.random() * 5;
+  const x = Math.random() * 5 - 10;
+  const y = 100 + Math.random() * 5;
   ctx.fillStyle = 'white'
-  ctx.font = "bold 200px sans-serif"
-  ctx.fillText("😂", x, y);
+  ctx.font = "bold 100px sans-serif"
+  ctx.fillText("\u{1f602}", x, y);
   requestAnimationFrame(shaking)
 }
