@@ -41,6 +41,7 @@ export function setupCanvas(width: number, height: number) {
   canvas.width = width
   canvas.height = height
   canvas.style.imageRendering = 'crisp-edges'
+  canvas.style.imageRendering = 'pixelated'
   canvas.style.margin = 'auto'
   canvas.style.display = 'block'
   canvas.style.width = "min(100vw, 100vh)"
