@@ -31,4 +31,7 @@ export class SCENE_NAME {
     this.running = false
   }
 
+  click() {
+  }
+
 }
