@@ -47,4 +47,8 @@ fcc6ccf
     this.running = false
   }
 
+  click() {
+    this.t = 0
+  }
+
 }

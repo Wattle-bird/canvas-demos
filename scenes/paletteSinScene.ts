@@ -44,7 +44,7 @@ export class PaletteSinScene {
   }
 
   rightClick() {
-    this.paletteLength = Math.floor(Math.random()*15)+1
+    this.paletteLength = Math.ceil(Math.random()*15)+1
   }
 
 }
