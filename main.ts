@@ -17,16 +17,19 @@ const canvas = c.canvas
 
 const frames: any[] = [ 
   new IntroScene(c),
-  new KTileScene(c),
-  new BoxSinScene(c), 
-  new PaletteSinScene(c), 
-  new DrawTilesScene(c), 
-  new FrendScene(c), 
-  new PaletteScene(c), 
+  new ImageDecodeScene(c),
   new CenterIconScene(c), 
-  new ImageDecodeScene(c) ]
-
-
+  new PaletteScene(c), 
+  new FrendScene(c), 
+  new DrawTilesScene(c), 
+  new PaletteSinScene(c), 
+  new BoxSinScene(c), 
+  new KTileScene(c),
+]
+const hashNumber = parseInt(location.hash.slice(1))
+if (!isNaN(hashNumber)) {
+  frameIndex = hashNumber
+}
 frames[frameIndex].start()
 click()
 
@@ -34,17 +37,19 @@ click()
 function click() {
   canvas.addEventListener('click', (e) => {
     const x = e.offsetX / canvas.offsetWidth * WIDTH
-    if (x > c.width/4*3) {
+    if (x < c.width/4) {
       frames[frameIndex].stop()
       frameIndex++
       frameIndex %= frames.length
       frames[frameIndex].start()
-    } else if (x < c.width/4) {
+      location.hash = ''+frameIndex
+    } else if (x > c.width/4*3) {
       frames[frameIndex].stop()
       frameIndex--
-      if (frameIndex < 0) {
+        if (frameIndex < 0) {
         frameIndex = frames.length - 1
       }
+      location.hash = ''+frameIndex
       frames[frameIndex].start()
     } else {
       if (frames[frameIndex].rightClick)
