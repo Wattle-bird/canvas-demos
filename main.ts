@@ -5,6 +5,7 @@ import {DrawTilesScene} from './scenes/drawTilesScene';
 import {FrendScene} from './scenes/frendScene';
 import {ImageDecodeScene} from './scenes/imageDecodeScene';
 import {IntroScene} from './scenes/introScene';
+import {KTileScene} from './scenes/kTileScene';
 import {PaletteScene} from './scenes/paletteScene';
 import {PaletteSinScene} from './scenes/paletteSinScene';
 const WIDTH = 128
@@ -16,6 +17,7 @@ const canvas = c.canvas
 
 const frames: any[] = [ 
   new IntroScene(c),
+  new KTileScene(c),
   new BoxSinScene(c), 
   new PaletteSinScene(c), 
   new DrawTilesScene(c), 
