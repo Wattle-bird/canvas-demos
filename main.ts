@@ -8,6 +8,7 @@ import {IntroScene} from './scenes/introScene';
 import {KTileScene} from './scenes/kTileScene';
 import {PaletteScene} from './scenes/paletteScene';
 import {PaletteSinScene} from './scenes/paletteSinScene';
+import {MunchScene} from './scenes/munchScene';
 import {XorScene} from './scenes/xorScene';
 const WIDTH = 128
 const HEIGHT = 128
@@ -26,7 +27,8 @@ const frames: any[] = [
   new PaletteSinScene(c), 
   new BoxSinScene(c), 
   new KTileScene(c),
-  new XorScene(c)
+  new XorScene(c),
+  new MunchScene(c)
 ]
 const hashNumber = parseInt(location.hash.slice(1))
 if (!isNaN(hashNumber)) {
