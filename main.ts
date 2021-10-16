@@ -11,6 +11,7 @@ import {PaletteSinScene} from './scenes/paletteSinScene';
 import {MunchScene} from './scenes/munchScene';
 import {XorScene} from './scenes/xorScene';
 import {MunchColorScene} from './scenes/munchColorScene';
+import {FontDrawScene} from './scenes/fontDrawScene';
 const WIDTH = 128
 const HEIGHT = 128
 let frameIndex = 0
@@ -30,7 +31,8 @@ const frames: any[] = [
   new KTileScene(c),
   new XorScene(c),
   new MunchScene(c),
-  new MunchColorScene(c)
+  new MunchColorScene(c),
+  new FontDrawScene(c)
 ]
 const hashNumber = parseInt(location.hash.slice(1))
 if (!isNaN(hashNumber)) {
