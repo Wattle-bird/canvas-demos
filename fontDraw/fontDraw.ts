@@ -28,6 +28,11 @@ export class FontDraw {
     })
   }
 
+  drawCentered(text: string, x:number, y:number) {
+    x -= TILE_WIDTH/2 * text.length
+    this.draw(text, x, y)
+  }
+
   drawChar(id: number, canvasX:number, canvasY: number) {
     const srcX = X_OFFSET + id * (TILE_WIDTH + X_GAP)
     const srcY = Y_OFFSET
