@@ -16,13 +16,14 @@ export class FpsMeter {
   }
 
   run() {
-    if (!this.running) return;
-    this.counter++;
-    const newTime = new Date().getSeconds()
-    if (this.time != newTime) {
-      this.time = newTime
-      this.fps = this.counter
-      this.counter = 0
+    if (this.running) {
+      this.counter++;
+      const newTime = new Date().getSeconds()
+      if (this.time != newTime) {
+        this.time = newTime
+        this.fps = this.counter
+        this.counter = 0
+      }
     }
     requestAnimationFrame(this.run.bind(this))
   }

@@ -41,6 +41,7 @@ export class StressBoxScene {
   start() {
     this.running = true;
     this.fps.running = true
+    this.c.ctx.fillStyle = 'red'
     Promise.all([this.kt.loaded(), this.fd.loaded()]).then(()=>this.run())
   }
 
