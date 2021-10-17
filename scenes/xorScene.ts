@@ -1,10 +1,12 @@
 import { CanvasTool } from '../canvasTool'
+import {FpsMeter} from '../fps';
 import {db16, forEach2d} from '../utils';
 
 export class XorScene {
   t: number;
   running: boolean
   paletteLength: number
+  fps: FpsMeter;
 
   run() {
     if (!this.running) return;
@@ -21,6 +23,8 @@ export class XorScene {
     })
     this.c.ctx.imageSmoothingEnabled = false
 
+    this.fps.draw()
+
 
     this.t++;
     requestAnimationFrame(this.run.bind(this))
@@ -31,15 +35,18 @@ export class XorScene {
     this.t = 0;
     this.running = false;
     this.paletteLength = 16
+    this.fps = new FpsMeter(c.ctx)
   }
 
   start() {
     this.running = true;
+    this.fps.running = true
     this.run()
   }
 
   stop() {
     this.running = false
+    this.fps.running = false
   }
 
   rightClick() {
