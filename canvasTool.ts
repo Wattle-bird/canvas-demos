@@ -43,6 +43,22 @@ export class CanvasTool {
     return Promise.all(this.resources.all.map((r: {loaded: any;}) => r.loaded()))
   }
 
+  imageData(callback: Function) {
+    const data = new ImageData(this.width, this.height)
+
+    const setPixel = (x: number, y: number, r: number, g: number, b: number, a: number = 255) => {
+      const offset = (y * this.width * 4) + x*4
+      data.data[offset] = r
+      data.data[offset+1] = g
+      data.data[offset+2] = b
+      data.data[offset+3] = 255
+    }
+
+    callback(setPixel)
+
+    this.ctx.putImageData(data, 0, 0)
+  }
+
   get width () {
     return this.canvas.width
   }

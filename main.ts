@@ -14,6 +14,7 @@ import {MunchColorScene} from './scenes/munchColorScene';
 import {FontDrawScene} from './scenes/fontDrawScene';
 import {StressScene} from './scenes/stressScene';
 import {StressBoxScene} from './scenes/stressBoxScene';
+import {ImageDataScene} from './scenes/imageDataScene';
 const WIDTH = 128
 const HEIGHT = 128
 let frameIndex = 0
@@ -36,7 +37,8 @@ const frames: any[] = [
   new MunchColorScene(c),
   new FontDrawScene(c),
   new StressScene(c),
-  new StressBoxScene(c)
+  new StressBoxScene(c),
+  new ImageDataScene(c)
 ]
 const hashNumber = parseInt(location.hash.slice(1))
 if (!isNaN(hashNumber)) {
