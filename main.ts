@@ -12,6 +12,8 @@ import {MunchScene} from './scenes/munchScene';
 import {XorScene} from './scenes/xorScene';
 import {MunchColorScene} from './scenes/munchColorScene';
 import {FontDrawScene} from './scenes/fontDrawScene';
+import {StressScene} from './scenes/stressScene';
+import {StressBoxScene} from './scenes/stressBoxScene';
 const WIDTH = 128
 const HEIGHT = 128
 let frameIndex = 0
@@ -32,14 +34,19 @@ const frames: any[] = [
   new XorScene(c),
   new MunchScene(c),
   new MunchColorScene(c),
-  new FontDrawScene(c)
+  new FontDrawScene(c),
+  new StressScene(c),
+  new StressBoxScene(c)
 ]
 const hashNumber = parseInt(location.hash.slice(1))
 if (!isNaN(hashNumber)) {
   frameIndex = hashNumber
 }
-frames[frameIndex].start()
-click()
+
+c.loaded().then(() => {
+  frames[frameIndex].start()
+  click()
+})
 
 
 function click() {

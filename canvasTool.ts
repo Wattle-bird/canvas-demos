@@ -1,9 +1,23 @@
+import {FontDraw} from "./fontDraw/fontDraw";
+import {KTile} from "./kTile/kTile";
 import {db16} from "./utils";
 
 export class CanvasTool {
   ctx: CanvasRenderingContext2D;
+
+  resources: any
+
+
+
   constructor(public canvas: HTMLCanvasElement) {
     this.ctx = canvas.getContext('2d')
+
+    // RESOURCES
+    this.resources = {all:[]}
+    this.resources.kTile = new KTile(this.ctx)
+    this.resources.all.push(this.resources.kTile)
+    this.resources.fontDraw = new FontDraw(this.ctx)
+    this.resources.all.push(this.resources.fontDraw)
   }
 
   pixel(x: number, y: number, color: string | CanvasGradient | CanvasPattern) {
@@ -23,6 +37,10 @@ export class CanvasTool {
 
   clear() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+  }
+
+  loaded() {
+    return Promise.all(this.resources.all.map((r: {loaded: any;}) => r.loaded()))
   }
 
   get width () {
