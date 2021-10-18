@@ -38,7 +38,8 @@ const frames: any[] = [
   new FontDrawScene(c),
   new StressScene(c),
   new StressBoxScene(c),
-  new ImageDataScene(c)
+  new ImageDataScene(c),
+
 ]
 const hashNumber = parseInt(location.hash.slice(1))
 if (!isNaN(hashNumber)) {

@@ -1,2 +1,2 @@
 #!/bin/sh
-sudo npx http-server -c-1 -p 80
+npx http-server -c-1 
