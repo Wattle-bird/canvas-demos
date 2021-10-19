@@ -18,6 +18,8 @@ import {ImageDataScene} from './scenes/imageDataScene';
 import {BasicScene} from './scenes/basicScene';
 import {BounceSceme} from './scenes/bounceScene';
 import {BounceEntitySceme} from './scenes/bounceEntityScene';
+import {EasyPaletteScene} from './scenes/easyPaletteScene';
+import {LinesScene} from './scenes/linesScene';
 const WIDTH = 128
 const HEIGHT = 128
 let frameIndex = 0
@@ -44,7 +46,9 @@ const frames: any[] = [
   new ImageDataScene(c),
   new BasicScene(c),
   new BounceSceme(c),
-  new BounceEntitySceme(c)
+  new BounceEntitySceme(c),
+  new EasyPaletteScene(c),
+  new LinesScene(c)
 ]
 const hashNumber = parseInt(location.hash.slice(1))
 if (!isNaN(hashNumber)) {
