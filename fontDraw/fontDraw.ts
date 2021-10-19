@@ -20,6 +20,8 @@ export class FontDraw {
   }
 
   draw(text: string, x: number, y: number) {
+    x |= 0
+    y |= 0
     text.split('').forEach((char:string) => {
       const id = char.codePointAt(0) - FIRST_CHAR
       if (id >= 0)

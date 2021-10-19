@@ -19,7 +19,7 @@ export class KTile {
   draw(id: number, canvasX:number, canvasY: number) {
     const srcX = id % SHEET_TILES_WIDE * TILE_WIDTH
     const srcY = Math.floor(id / SHEET_TILES_WIDE) * TILE_HEIGHT
-    this.ctx.drawImage(this.image, srcX, srcY, TILE_WIDTH, TILE_HEIGHT, canvasX, canvasY, TILE_WIDTH, TILE_HEIGHT)
+    this.ctx.drawImage(this.image, srcX, srcY, TILE_WIDTH, TILE_HEIGHT, canvasX|0, canvasY|0, TILE_WIDTH, TILE_HEIGHT)
   }
 }
 
