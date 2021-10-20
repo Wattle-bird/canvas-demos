@@ -21,6 +21,7 @@ import {BounceEntitySceme} from './scenes/bounceEntityScene';
 import {EasyPaletteScene} from './scenes/easyPaletteScene';
 import {LinesScene} from './scenes/linesScene';
 import {BounceRectScene} from './scenes/bounceRectScene';
+import {JumpyScene} from './scenes/jumpyScene';
 const WIDTH = 128
 const HEIGHT = 128
 let frameIndex = 0
@@ -50,7 +51,8 @@ const frames: any[] = [
   new BounceEntitySceme(c),
   new EasyPaletteScene(c),
   new LinesScene(c),
-  new BounceRectScene(c)
+  new BounceRectScene(c),
+  new JumpyScene(c)
 ]
 const hashNumber = parseInt(location.hash.slice(1))
 if (!isNaN(hashNumber)) {

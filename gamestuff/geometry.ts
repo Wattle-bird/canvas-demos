@@ -26,11 +26,17 @@ export class Rectangle {
   get right() {
     return this.x + this.w
   }
+  set right(val) {
+    this.x = val - this.w
+  }
   get top() {
     return this.y
   }
   get bottom() {
     return this.y + this.h
+  }
+  set bottom(val) {
+    this.y = val - this.h
   }
 
   // Scalars
